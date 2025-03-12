@@ -23,8 +23,8 @@ coffee_cup = f"""
 """
 
 parser = argparse.ArgumentParser(prog="coffee", description="Coffee", epilog="(c)2025 Ivaylo Vasilev")
-parser.add_argument("-t", "--time", action="store_true", help="show run time")
-parser.add_argument("--version", action="version", version="%(prog)s 2025.2-beta0", help="show program version")
+parser.add_argument("-t", "--time", action="store_true", help="show elapsed time")
+parser.add_argument("--version", action="version", version="%(prog)s 2025.2-beta1", help="show program version")
 args = parser.parse_args()
 
 
@@ -41,8 +41,10 @@ def coffee():
     end_time = datetime.datetime.now()
 
     if args.time:
-        run_time = (end_time - start_time)
-        print(f"run time: {str(run_time).split('.')[0]}")
+        elapsed_time = (end_time - start_time)
+        elapsed_time = str(elapsed_time).split(".")[0]
+        h, m, s = elapsed_time.split(":")
+        print(f"elapsed time: {h}h {m}min {s}sec")
 
 
 if __name__ == "__main__":
