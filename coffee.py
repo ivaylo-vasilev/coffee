@@ -1,6 +1,5 @@
 import ctypes
 import time
-import datetime
 import argparse
 from colorama import init, Fore
 
@@ -23,26 +22,19 @@ coffee_cup = f"""
 """
 
 parser = argparse.ArgumentParser(prog="coffee", description="Coffee", epilog="(c)2025 Ivaylo Vasilev")
-parser.add_argument("-t", "--time", action="store_true", help="show run time")
-parser.add_argument("--version", action="version", version="%(prog)s 2025.2-beta0", help="show program version")
+parser.add_argument("--version", action="version", version="%(prog)s 2025.1", help="show program version")
 args = parser.parse_args()
 
 
 def coffee():
     print(coffee_cup)
-    start_time = datetime.datetime.now()
     while True:
         try:
             ctypes.windll.kernel32.SetThreadExecutionState(0x00000001)
             ctypes.windll.kernel32.SetThreadExecutionState(0x00000002)
             time.sleep(60)
         except KeyboardInterrupt:
-            break
-    end_time = datetime.datetime.now()
-
-    if args.time:
-        run_time = (end_time - start_time)
-        print(f"run time: {str(run_time).split('.')[0]}")
+            return
 
 
 if __name__ == "__main__":
