@@ -65,7 +65,7 @@ def timed_coffee(t):
             run_time -= 1
         except KeyboardInterrupt:
             break
-    print("remaining time: 0 min" + " " * t)
+    print("remaining time: 0 min(s)" + " " * t)
     end_time = datetime.datetime.now()
 
     if args.time:
